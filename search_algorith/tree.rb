@@ -109,11 +109,21 @@ class Tree
           potential = nil
         end
       end
-    end 
+    end
   end
 
   def find(value)
-    # Node
+    node = @root
+    while node
+      if value < node.value
+        node = node.left_node
+      elsif value > node.value
+        node = node.right_node
+      else
+        return node
+      end
+    end
+    node
   end
 
   def level_order
