@@ -3,6 +3,11 @@ require './mastermind'
 describe Mastermind do
   let(:game) { Mastermind.new }
 
+  before(:each) do
+    allow(game).to receive(:generate_code).and_return([ 1, 2, 3, 4 ])
+    puts game.send(:code)
+  end
+
   describe '#generate_code' do
     it 'returns array of 4 random numbers between 0 and 6' do
       game.send(:generate_code).each do |rand|
@@ -20,7 +25,7 @@ describe Mastermind do
     end
   end
 
-  describe '#game_lost' do
+  describe '#game_lost?' do
     it 'changes game message (or state) to game lost' do
       game.send(:set_score, 7)
       game.send(:game_lost?)
@@ -42,12 +47,11 @@ describe Mastermind do
     end
   end
 
+################################################################################
+
   describe '#guess_checker' do
     context 'all guesses are wrong' do
       it 'returns an array of wrong' do
-        allow(game).to receive(:generate_code).and_return([ 1, 2, 3, 4])
-        game.send(:set_current_guess, [5, 6, 5, 6])
-        expect(game.send(:guess_checker)).to eql([ 'wrong', 'wrong', 'wrong', 'wrong' ])
       end
     end
 
@@ -62,5 +66,13 @@ describe Mastermind do
     end
   end
 
+  describe '#guess_inputter' do
+    it 'shouls set the score plus one and the current guess to the input' do
+    end
+  end
 
+  describe '#outputter' do
+    it 'shouls print the current guess and how correct it was' do
+    end
+  end
 end
