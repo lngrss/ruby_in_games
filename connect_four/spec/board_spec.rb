@@ -11,17 +11,14 @@ describe Board do
     it 'creates a board object with an empty 6x7 field' do
       expect(board.field).to eql(Array.new(6, Array.new(7, '.')))
     end
-
-    it 'creates a board object with a field attribute' do
-      expect(board).to have_attributes(:field)
-    end
   end
 
   describe '#make_move' do
     context 'when the move is in an existing and not yet full column' do
       it 'takes a column and a string and sets the move at the lowest point in the given column' do
         board.make_move(1, '#')
-        expect(board.field[5][0]).to eql('#')
+        expect(board.field[0][1]).to eql('#')
+        expect(board.field[3][1]).to eql('.')
       end
     end
 

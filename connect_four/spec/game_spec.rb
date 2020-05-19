@@ -9,7 +9,7 @@ describe Game do
   describe '#move' do
     it 'takes a player calls board.make_move' do
       game.move(player)
-      expect(game.board.field[5][1]).to eql('#')
+      expect(game.board.field[0][1]).to eql('#')
     end
   end
 
